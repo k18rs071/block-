@@ -268,6 +268,7 @@ var BB = {
     endGame: function() {
         BB.gameState = GAMESTATE_STOP;
         vibrate();
+        ncmbController.sendScore(BB.score);                
     },
     
     // Game Clear
@@ -276,11 +277,13 @@ var BB = {
         else alert("Cleared!");
         
         BB.gameState = GAMESTATE_STOP;
-    }
+        ncmbController.sendScore(BB.score);
+    },
 }
 
 
 function init() {
+  ncmbController.init(BB.screenSize);
     // Accelerometer
     /*
     if (typeof navigator.accelerometer !== 'undefined' && !accelerationWatch) {
